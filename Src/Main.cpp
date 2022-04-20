@@ -9,7 +9,13 @@
 #include <string>
 #include <time.h>
 using namespace std;
-
+/*
+ * future changes in theory:
+ * >make a "player" class
+ * >figure out something other than cin
+ * >more than 2 players
+ * >less than 2 players (AI)
+ */
 string name (int playerNumber) {
 	int numberOfLetters;
 	string name;
@@ -35,6 +41,9 @@ int main () {
 	int maxGuesses = 12;
 	int numberOfColors = 8;
 	int lengthOfCode = 5;
+	int guessLength;
+	string secretCode;
+	string guess;
 	string firstPlayer;
 	string playerOneName = name(1);
 	cout << "Player 1's name is " << playerOneName << "!\n";
@@ -72,7 +81,19 @@ int main () {
 		cin >> numberOfColors;
 		cout << "How long would you like the code to be? 5 is normal ";
 		cin >> lengthOfCode;
-		cout << "Enter the secret code " << firstPlayer << "!\nUse numbers 1-";
+		cout << "Enter the secret code " << firstPlayer << "!\nUse numbers 1-" << numberOfColors << " in a code " << lengthOfCode << " numbers long: ";
+		cin >> secretCode;
+		guessLength = guess.length();
+		cout << guessLength << endl;
+		for (int numberOfGuesses; numberOfGuesses <= maxGuesses; numberOfGuesses++) {
+			cout << "Enter your first guess using numbers 1-" << numberOfColors << " in a code " << lengthOfCode << " numbers long\n";
+			do {
+				cin >> guess;
+				if (guessLength != lengthOfCode) {
+					cout << "Please try again! Guess must be " << lengthOfCode << " letters long!\n";
+				}
+			} while (guessLength != lengthOfCode);
+		}
 	} while (-1 == -1);
 	return 0;
 }
