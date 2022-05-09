@@ -7,7 +7,10 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <time.h>
+#include <cmath>
+
 using namespace std;
 /*
  * future changes in theory:
@@ -33,17 +36,22 @@ string name (int playerNumber) {
 	return name;
 }
 
+string guessCheck (int guessAnswer [][2], int length) {
+
+	return "hi";
+}
+
 int main () {
 	/*
-	cout << "\033[31mred text\033[0m\n";
-	colored text ^^^ also more info in screenshot in downloads
-	*/
+	 * cout << "\033[31mred text\033[0m\n";
+	 * colored text ^^^ also more info in screenshot in downloads
+	 */
 	int maxGuesses = 12;
 	int numberOfColors = 8;
 	int lengthOfCode = 5;
 	int guessLength;
-	string secretCode;
-	string guess;
+	int secretCode;
+	int guess;
 	string firstPlayer;
 	string playerOneName = name(1);
 	cout << "Player 1's name is " << playerOneName << "!\n";
@@ -83,16 +91,27 @@ int main () {
 		cin >> lengthOfCode;
 		cout << "Enter the secret code " << firstPlayer << "!\nUse numbers 1-" << numberOfColors << " in a code " << lengthOfCode << " numbers long: ";
 		cin >> secretCode;
-		guessLength = guess.length();
-		cout << guessLength << endl;
+		//char codeArray [lengthOfCode];
+		//strcpy(codeArray, secretCode.c_str());
+		//char guessReporter [lengthOfCode];
+		/*
+		 * to do:
+		 * make guess and answer into one int array
+		 * ^ 2d array in specific so no pointers
+		 * use array to compare nums
+		 */
 		for (int numberOfGuesses; numberOfGuesses <= maxGuesses; numberOfGuesses++) {
-			cout << "Enter your first guess using numbers 1-" << numberOfColors << " in a code " << lengthOfCode << " numbers long\n";
+			cout << "Enter your guess using numbers 1-" << numberOfColors << " in a code " << lengthOfCode << " numbers long\n";
 			do {
 				cin >> guess;
+				guessLength = trunc(log10(guess)) + 1;
+				cout << guessLength;
 				if (guessLength != lengthOfCode) {
-					cout << "Please try again! Guess must be " << lengthOfCode << " letters long!\n";
+					cout << "Please try again! Guess must be " << lengthOfCode << " numbers long!\n";
 				}
 			} while (guessLength != lengthOfCode);
+			//strcpy(guessReporter, guess.c_str());
+			//cout << guessCheck();
 		}
 	} while (-1 == -1);
 	return 0;
